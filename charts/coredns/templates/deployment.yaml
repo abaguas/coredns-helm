@@ -116,6 +116,9 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         ports:
 {{ include "coredns.containerPorts" . | indent 8 }}
+{{- if .Values.extraContainerPorts }}
+{{ toYaml .Values.extraContainerPorts | indent 8 }}
+{{- end }}
         {{- if .Values.livenessProbe.enabled }}
         livenessProbe:
           httpGet:

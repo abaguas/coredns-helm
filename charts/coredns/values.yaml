@@ -245,10 +245,12 @@ extraContainers: []
 # - name: some-container-name
 #   image: some-image:latest
 #   imagePullPolicy: Always
+
 # optional array of extra volumes to create
 extraVolumes: []
 # - name: some-volume-name
 #   emptyDir: {}
+
 # optional array of mount points for extraVolumes
 extraVolumeMounts: []
 # - name: some-volume-name
@@ -263,6 +265,13 @@ extraSecrets: []
 # - name: some-fancy-secret
 #   mountPath: /etc/wherever
 #   defaultMode: 440
+
+# optional array of extra container ports
+# possible usecase: open prometheus port if deployment.skipConfig=true
+extraContainerPorts:
+# - name: tcp-9153
+#   protocol: TCP
+#   containerPort: 9153
 
 # optional array of environment variables for coredns container
 # possible usecase: provides username and password for etcd user authentications
