@@ -34,6 +34,8 @@ terminationGracePeriodSeconds: 30
 podAnnotations: {}
 #  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
+podLabels: {}
+
 serviceType: "ClusterIP"
 
 prometheus:
