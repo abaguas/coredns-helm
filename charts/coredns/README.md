@@ -211,6 +211,8 @@ The command removes all the Kubernetes components associated with the chart and 
 | `deployment.name`                              | Name of the deployment if `deployment.enabled` is true. Otherwise the name of an existing deployment for the autoscaler or HPA to target. | `""`                                                         |
 | `deployment.annotations`                       | Annotations to add to the main deployment                                                                                                 | `{}`                                                         |
 | `deployment.selector`                          | Pod selector                                                                                                                              | `{}`                                                         |
+| `deployment.dnsPolicy`                         | DNS policy for the pod (Default, ClusterFirst, ClusterFirstWithHostNet, None)                                                             | `"Default"`                                                  |
+| `deployment.dnsConfig`                         | Custom DNS configuration (nameservers, searches, options). Required when dnsPolicy is "None"                                              | `{}`                                                         |
 | `clusterRole.nameOverride`                     | ClusterRole name override                                                                                                                 |                                                              |
 
 See `values.yaml` for configuration notes. Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,

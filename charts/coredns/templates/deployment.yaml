@@ -75,13 +75,15 @@ spec:
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName | quote }}
       {{- end }}
-      {{- if .Values.dnsConfig }}
-      dnsPolicy: None
-      {{- else if .Values.isClusterService }}
-      dnsPolicy: Default
+      {{- if .Values.isClusterService }}
+      dnsPolicy: {{ .Values.deployment.dnsPolicy }}
       {{- end }}
-      {{- if .Values.dnsConfig }}
-      dnsConfig: {{ toYaml .Values.dnsConfig | nindent 8 }}
+      {{- if and (eq .Values.deployment.dnsPolicy "None") (not .Values.deployment.dnsConfig) }}
+      {{- fail "dnsConfig is required when dnsPolicy is set to None" }}
+      {{- end }}
+      {{- with .Values.deployment.dnsConfig }}
+      dnsConfig:
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- if .Values.affinity }}
       affinity:
